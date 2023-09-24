@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Crear</title>
+  <link rel="stylesheet" type="text/css" href="create.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/cb9410e97c.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <header>
+    <div class="header__superior">
+      <div class="Nombre">
+        <h1>S.A.C.H.23</h1>
+      </div>
+      <div class="search">
+        <h2>¡Bienvenido(a) <span id="emaillogin"></span>!</h2>
+        
+
+      </div>
+    </div>
+    <div class="container__menu">
+        <div class="menu">
+          <input type="checkbox" name="" id="check__menu">
+          <label id="label__check" for="check__menu">
+            <i class="fa-solid fa-bars" icon__menu></i>         
+         </label>
+          <nav>
+            <ul>
+              <li><a href="home.html" id="selected"></a></li>
+              <li><a href="ingresar.html">Registrar</a>
+                <ul>
+                  <li><a href="ingresarcursos.html">Crear Cursos</a></li>
+                  <li><a href="ingresarmat.html">Crear Materias</a></li>
+                 
+                  <li><a href="ingresarhorarios.html">Cargar Horarios</a></li>
+                </ul>
+                </li>
+              <li><a href="leerqr.html">Marcar</a></li>
+              <li><a href="create.html">Crear</a></li>
+             
+            </ul>
+          </nav>
+        </div>
+
+    </div>
+
+  </header>
+
+ </body>
+</html>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const email = params.get('email');
+  const id = params.get('id');
+  document.getElementById('emaillogin').textContent = email;
+  
+</script>

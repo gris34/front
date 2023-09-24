@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Home</title>
+         <link rel="stylesheet" type="text/css" href="ingresarmat.css">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <script src="https://kit.fontawesome.com/cb9410e97c.js" crossorigin="anonymous"></script>
+         <script>
+            async function Creation_Mat() {
+                const successModal = document.getElementById("success-modal");
+                const errorModal = document.getElementById("error-modal");
+                
+                const nombre = document.getElementById("nombre").value;
+                const tipo_mat = document.getElementById("tipo_mat").value;
+        
+                if (!nombre.trim() || !tipo_mat.trim()) {
+                    alert("Por favor, complete todos los campos antes de guardar.");
+                    return;
+                }
+        
+                const data = {
+                    nombre: nombre,
+                    tipo_mat: tipo_mat
+                };
+        
+                try {
+                    const response = await fetch("http://192.168.0.5:3000/api/materia", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(data)
+                    });
+                    
+                    const responseData = await response.json();
+                    console.log("Respuesta de la API:", responseData);
+                    
+                    if (responseData.id_materia) {
+                        successModal.style.display = "block";
+                        alert("La materia ha sido guardada correctamente.");
+                    } else {
+                        errorModal.style.display = "block";
+                        console.error("Error en el registro:", responseData.error); 
+                    }
+                } catch (error) {
+                    console.error("Error en la solicitud:", error);
+                    alert("La materia ha sido guardada correctamente.");
+                }
+            }
+        </script>
+        
+
+    </head>
+
+    <body>
+        <header>
+            <div class="header__superior">
+                <div class="Nombre">
+                    <h1>S.A.C.H.23</h1>
+                </div>
+                <div class="search">
+                    <h2>¡Bienvenido(a) <span id="emaillogin"></span>!</h2>
+                </div>
+         </div>
+            <div class="container__menu">
+                <div class="menu">
+                    <input type="checkbox" name="" id="check__menu">
+                    <label id="label__check" for="check__menu">
+                        <i class="fa-solid fa-bars" icon__menu></i>         
+                    </label>
+                    <nav>
+                        <ul>
+                            <li><a href="home.html" id="selected"></a></li>
+                            <li><a href="ingresar.html">Registrar</a>
+                                <ul>
+                                    <li><a href="ingresarcursos.html">Crear Cursos</a></li>
+                                    <li><a href="ingresarmat.html">Crear Materias</a></li>
+                                    <li><a href="ingresarhorarios.html">Cargar Horarios</a></li>
+                                </ul>
+                                </li>
+                            <li><a href="leerqr.html">Marcar</a></li>
+                            <li><a href="create.html">Crear</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+     </header>
+     <body>
+    <div class="formulario">
+        <h1>Registro De Materias</h1>
+        <form id="materia-form" onsubmit="Creation_Mat(); return false;">
+            <div class="campo">        
+                <input type="text" id="nombre" required placeholder="Nombre de la Materia:">
+            </div>
+            <div class="campo">
+                <label for="tipo_mat">Tipo de Materia:</label>
+                <select id="tipo_mat" required>
+                    <option value="especifica">Específica</option>
+                    <option value="general">General</option>
+                    <option value="escolar-basica">Escolar Básica</option>
+                    <option value="nivel-medio">Nivel Medio</option>
+                </select>
+            </div>
+            <button type="submit">Guardar</button>
+        </form>
+        <div id="success-modal" style="display: none;">
+            <p id="success-message">Materia guardada con éxito.</p>
+        </div>
+        <div id="error-modal" style="display: none;">
+            <p>Materia Guardada correctamente.</p>
+        </div>
+    </div>
+    
+    
+</body>
+</html>

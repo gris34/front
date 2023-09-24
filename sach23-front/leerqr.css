@@ -1,0 +1,243 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&family=Source+Sans+3&display=swap');
+@import url('https://fonts.googleapis.com/css2? family= Lilita+One & display=swap');
+@import url('https://fonts.googleapis.com/css2? family= Bebas+Neue & display=swap');
+@import url(https://fonts.googleapis.com/css?family=Vibur);
+*{
+  margin: 0;
+  padding: 0%;
+  box-sizing: border-box;
+  font-family: 'Source Sans 3', sans-serif;
+  text-decoration: none;
+}
+
+header{
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+}
+
+.header__superior{
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  
+
+}
+
+.nombre{
+  font-size: 12px;
+  font-family: 'Source Sans 3';
+  
+}
+
+.search input{
+  width: 300px;
+  padding: 10px;
+}
+
+.container__menu{
+  width: 100%;
+  height: 50px;
+  background-color: #734c54 ;
+  padding: 0px 20px;
+}
+
+.menu{
+  max-width: 1200px;
+  margin: auto;
+  height: 100%;
+}
+.nav{
+  height: 100%;
+  font-family: 'Source Sans 3', sans-serif;
+
+}
+nav > ul{
+  height: 100%;
+  display: flex;
+  
+}
+nav  ul li{
+  height: 100%;
+  list-style: none;
+  position: relative;
+}
+
+nav > ul > li:first-child> a{
+  background-image: url(/imagenes/home.png);
+  background-size: 24px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  padding: 25px 40px;
+}
+
+nav > ul > li:first-child:hover> a{
+  background-image: url("/imagenes/home.png");
+  background-size: 24px;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+nav > ul > li> a{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 14px;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 14px;
+  transition: all 300ms ease;
+}
+
+nav > ul > li> a:hover{
+  transform: scale(1.1);
+  background: #ac848c;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+#selected{
+  transform: scale(1.1);
+  background-color: #ac848c;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+nav ul li ul{
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  position: absolute;
+  top: 50px;
+  left: -5px;
+  padding: 20px 0px;
+  visibility: hidden;
+  opacity: 0;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+  transition: all 300ms ease;
+}
+nav ul li:hover ul{
+  visibility: visible;
+  opacity: 1;
+  top: 70px;
+
+}
+
+nav ul li ul:before{
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 12px solid white;
+  position: absolute;
+  top: -12px;
+  left: 20px;
+}
+
+nav ul li ul li a{
+  display: block;
+  color: #ac848c;
+  padding: 6px;
+  padding: 14px;
+  margin-top: -10px;
+  font-size: 14px;
+  text-transform: uppercase;
+  transition: all 300ms ease;
+}
+
+nav ul li ul li a:hover{
+  background: #755c61;
+  color: #fff;
+  transform: scale(1.1);
+  padding-left: 30px;
+  font-size: 14px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+
+}
+
+h2{
+  font-family:'Source Sans 3' ;
+}
+
+label {
+  font-size: 26px;
+  cursor: pointer;
+  width: 30px;
+  color: #fff;
+  height: 100%;
+  display: none;
+  align-items: center;
+}
+#check__menu{
+  display: none;
+}
+#label__check{
+  width: 26px;
+  height: 100px;
+  display: none;
+}
+
+@media screen and (max-width: 720px){
+  .search h2{
+    display: none;
+  }
+  .header__superior{
+    padding: 5px;
+  }
+  .nombre h1{
+    width: 80px;
+  }
+  nav > ul{
+    flex-direction: column;
+    background-color: #734c54;
+    position: fixed;
+    left: 0;
+    top: 100px;
+    width: 100%;
+    height: 0px;
+    transition: all 300ms ease;
+    z-index: 50;
+    opacity: 0;
+    visibility: hidden;
+  }
+  nav > ul > li > a:hover{
+    transform: scale(1);
+
+  }
+  nav ul li ul{
+    left: 90px;
+  }
+  nav ul li:hover ul{
+    top: 50px;
+  }
+  nav> ul> li:first-child a{
+    background-position: 20px;
+  }
+  #selected{
+    transform: scale(1);
+  }
+  #label__check{
+    display: block;
+
+  }
+  label{
+    display: block;
+  }
+  #check__menu:checked ~ nav > ul {
+    height: 300px;
+    visibility: visible; 
+    opacity: 1;
+  } 
+  .cuerpo{
+    margin-top: 120px;
+  }
+}

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingresar Cursos</title>
+    <script src="https://kit.fontawesome.com/cb9410e97c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="ingresarcursos.css">
+    <script>
+      form.addEventListener("submit", function(event) {
+      event.preventDefault();
+  
+      const nivel = document.getElementById("nivel").value;
+      const grado = document.getElementById("grado").value;
+      const especialidad = document.getElementById("especialidad").value;
+  
+      const data = {
+          nivel: nivel,
+          grado: grado,
+          especialidad: especialidad,
+      };
+  
+      fetch("http://192.168.0.5:3000/api/cursos", {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json"
+          },
+          body: JSON.stringify(data)
+      })
+      .then(response => {
+          if (!response.ok) {
+              throw new Error("La solicitud no pudo completarse correctamente.");
+          }
+          return response.json();
+      })
+      .then(result => {
+          console.log("Respuesta de la API:", result);
+          if (result.success) {
+              successModal.style.display = "block";
+          } else {
+              errorModal.style.display = "block";
+          }
+      })
+      .catch(error => {
+          console.error("Error en la solicitud:", error);
+          errorModal.style.display = "block";
+      });
+  });
+  
+  
+  </script>
+</head>
+<body>
+    <header>
+        <div class="header__superior">
+          <div class="Nombre">
+            <h1>S.A.C.H.23</h1>
+          </div>
+          <div class="search">
+            <h2>¡Bienvenido(a) <span id="emaillogin"></span>!</h2>
+          </div>
+        </div>
+        <div class="container__menu">
+            <div class="menu">
+              <input type="checkbox" name="" id="check__menu">
+              <label id="label__check" for="check__menu">
+                <i class="fa-solid fa-bars" icon__menu></i>         
+             </label>
+              <nav>
+                <ul>
+                  <li><a href="home.html" id="selected"></a></li>
+                  <li><a href="ingresar.html">Registrar</a>
+                    <ul>
+                      <li><a href="ingresarcursos.html">Crear Cursos</a></li>
+                      <li><a href="ingresarmat.html">Crear Materias</a></li>
+                      <li><a href="ingresarhorarios.html">Cargar Horarios</a></li>
+                    </ul>
+                    </li>
+                  <li><a href="leerqr.html">Marcar</a></li>
+                  <li><a href="create.html">Crear</a></li>
+                </ul>
+              </nav>
+            </div>
+        </div>
+      </header>
+      <div class="container">
+        <h1>Cargar Datos</h1>
+        <form id="data-form">
+            <input type="text" id="nivel" name="nivel" required placeholder="Ingresar Niveles de Educación."><br>
+            <input type="text" id="grado" name="grado" required placeholder="Agregar cursos existentes en la Institución."><br>
+            <input type="text" id="especialidad" name="especialidad" required placeholder="Especificar Especialidades que se enseñan en la institución."><br>
+            <button type="submit">Cargar Datos</button>
+        </form>
+        <div id="success-modal" class="modal">
+            <div class="modal-content">
+                <h2>Operación Exitosa</h2>
+                <p>Los datos se han cargado correctamente.</p>
+                <button id="close-success-modal">Cerrar</button>
+            </div>
+        </div>
+        <div id="error-modal" class="modal">
+            <div class="modal-content">
+                <h2>¡Oh no, parece que hay un error!</h2>
+                <p>No se pudo completar la operación.</p>
+                <button id="close-error-modal">Cerrar</button>
+            </div>
+        </div
+    </div>
+  
+</body>
+</html>
